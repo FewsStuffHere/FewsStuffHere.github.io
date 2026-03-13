@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet" />
   <style>
-    /* ── RESET ─────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -34,8 +33,7 @@
       font-family: var(--sans);
       font-weight: 300;
     }
-
-    /* ── AMBIENT ORBS ──────────────────────────────────────────── */
+    
     .orb {
       position: fixed; border-radius: 50%;
       filter: blur(110px); opacity: 0.15;
@@ -51,14 +49,12 @@
       100% { transform: translate(-25px,45px) scale(0.94); }
     }
 
-    /* noise overlay */
     body::after {
       content:''; position:fixed; inset:0; z-index:1; pointer-events:none;
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       opacity: 0.4;
     }
 
-    /* ── VEIL ──────────────────────────────────────────────────── */
     #veil {
       position: fixed; inset: 0; z-index: 500;
       background: var(--bg);
@@ -67,7 +63,6 @@
     }
     #veil.show { opacity: 1; pointer-events: all; }
 
-    /* ── NAV ───────────────────────────────────────────────────── */
     nav {
       position: fixed; top: 1.6rem; left: 50%;
       transform: translateX(-50%);
@@ -101,21 +96,17 @@
       user-select: none;
     }
     .nav-btn:hover  { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.05); }
-    /* active — no dot, just highlight */
     .nav-btn.active { color: #fff; background: rgba(255,255,255,0.08); }
 
-    /* Home button accent colour */
     .nav-btn-home         { color: var(--a3); }
     .nav-btn-home:hover   { color: #fff; background: rgba(52,211,153,0.1); }
     .nav-btn-home.active  { color: #fff; background: rgba(52,211,153,0.12); }
 
-    /* ── VIEWS ─────────────────────────────────────────────────── */
     .view {
       position: fixed; inset: 0; z-index: 2;
       display: flex;
     }
-
-    /* ── REVEAL ELEMENTS ────────────────────────────────────────── */
+    
     .r {
       opacity: 0;
       transform: translateX(-38px);
@@ -123,16 +114,12 @@
     }
     .r.up  { transform: translateY(28px); }
 
-    /* Pop-in variant: scales up from centre with motion blur */
     .r.pop {
       transform: scale(0.88);
       filter: blur(10px);
       will-change: opacity, transform, filter;
     }
-
-    /* ════════════════════════════════════════════════════════
-       HOME
-    ════════════════════════════════════════════════════════ */
+    
     #view-home {
       flex-direction: column;
       align-items: center;
@@ -171,9 +158,6 @@
       line-height: 1.8;
     }
 
-    /* ════════════════════════════════════════════════════════
-       ABOUT ME — editorial split
-    ════════════════════════════════════════════════════════ */
     #view-about { flex-direction: row; align-items: stretch; }
 
     .about-left {
@@ -245,9 +229,6 @@
     }
     .tag:hover { color:#fff; border-color:var(--a1); background:rgba(124,156,255,0.08); }
 
-    /* ════════════════════════════════════════════════════════
-       WHAT I LIKE — bento grid
-    ════════════════════════════════════════════════════════ */
     #view-likes {
       flex-direction: column;
       padding: clamp(4rem,8vh,6rem) clamp(1.5rem,5vw,5rem) clamp(1rem,3vh,2rem);
@@ -264,10 +245,6 @@
       flex: 1; min-height: 0;
     }
 
-    /* ── BENTO CARD ─────────────────────────────────────────────
-       Cards are clickable. Description is hidden by default and
-       smoothly expands when the card gets the .open class.
-    ─────────────────────────────────────────────────────────── */
     .bento-card {
       background: var(--surf);
       border: 1px solid var(--bdr);
@@ -292,7 +269,6 @@
       background: linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
     }
 
-    /* Toggle indicator ─ top-right corner */
     .bento-toggle {
       position: absolute; top: 0.85rem; right: 0.9rem;
       width: 18px; height: 18px;
@@ -323,7 +299,6 @@
       font-weight:300; color:#fff; line-height:1.15; flex-shrink: 0;
     }
 
-    /* Description — hidden by default, expands on .open */
     .bento-desc {
       font-size: .84rem;
       color: #b0b4c1;
@@ -338,12 +313,11 @@
                   margin-top 0.35s var(--ease);
     }
     .bento-card.open .bento-desc {
-      max-height: 160px;   /* tall enough for any card's text */
+      max-height: 160px;  
       opacity: 1;
       margin-top: 0.6rem;
     }
 
-    /* ── RESPONSIVE ─────────────────────────────────────────────── */
     @media(max-width:820px){
       #view-about { flex-direction: column; }
       .about-left {
@@ -373,7 +347,6 @@
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
 
-  <!-- ══ NAV ══════════════════════════════════════════════════════ -->
   <nav id="nav">
     <div class="nav-pill">
       <button class="nav-btn nav-btn-home" data-view="home">Home</button>
@@ -382,15 +355,14 @@
     </div>
   </nav>
 
-  <!-- ══ HOME ══════════════════════════════════════════════════════ -->
+
   <div class="view" id="view-home">
-    <!-- text is set by JS from the random greetings array -->
+    <!-- saygex-->
     <p  class="home-eyebrow r pop" id="home-greeting" data-delay="0"></p>
     <h1 class="home-name r pop"    data-delay="120">Hi!<br /><em>I'm Few.</em></h1>
     <p  class="home-sub r pop"     data-delay="260">Luau script writer - Animator // I love computer stuff!</p>
   </div>
 
-  <!-- ══ ABOUT ME ═══════════════════════════════════════════════════ -->
   <div class="view" id="view-about">
     <div class="about-left">
       <blockquote class="about-quote r" data-delay="100">
@@ -400,14 +372,13 @@
     </div>
     <div class="about-right">
       <p  class="kicker r"    data-delay="60">01 — About Me</p>
-      <h2 class="sec-title r" data-delay="160">About my <em>Life</em><br />So Far</h2>
-      <p  class="body-p r"    data-delay="270">Hi guys!!! — I'm <strong style="color:#fff">Few</strong>, an ordinary person on the internet that you shouldnt trust cuz' that's what everyone is saying,,,</p>
+      <h2 class="sec-title r" data-delay="160">About <em>me!</em><br /></h2>
+      <p  class="body-p r"    data-delay="270">Hello people, I'm <strong style="color:#fff">Few</strong>, an ordinary person on the internet, Im really selfish to begin with-</p>
       <p  class="body-p r"    data-delay="360">I'm a Vietnamese, speak pho and the truest Viet of me, I also speak English too!</p>
-      <p  class="body-p r"    data-delay="450">You'll always find me indulging in bits and bytes, screen and keyboards, but to be honest, I'm not even that good... I'm just doing what I love!</p>
+      <p  class="body-p r"    data-delay="450">You'll always find me indulging in bits and bytes, screen and keyboards, but to be honest, I'm not even that good... Just doing it for fun yah</p>
     </div>
   </div>
 
-  <!-- ══ WHAT I LIKE ════════════════════════════════════════════════ -->
   <div class="view" id="view-likes">
     <div class="likes-header">
       <p  class="kicker r"    data-delay="0">02 — Passions</p>
@@ -461,9 +432,6 @@
   </div>
 
 <script>
-  // ═══════════════════════════════════════════════════════════════
-  //  RANDOM GREETINGS
-  // ═══════════════════════════════════════════════════════════════
   const GREETINGS = [
     "Its a dreamy day today~",
     "Good morning! Or afternoon. Or evening. Whenever you are~",
@@ -477,14 +445,9 @@
     "The stars aligned and brought you here~",
   ];
 
-  // Pick once per page load and set immediately so the element
-  // has its text before the reveal animation fires.
   const greetingEl = document.getElementById('home-greeting');
   greetingEl.textContent = GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
 
-  // ═══════════════════════════════════════════════════════════════
-  //  BENTO CARD INTERACTION — one card open at a time
-  // ═══════════════════════════════════════════════════════════════
   function initBentoCards() {
     const cards = document.querySelectorAll('.bento-card');
     cards.forEach(card => {
@@ -499,9 +462,6 @@
   }
   initBentoCards();
 
-  // ═══════════════════════════════════════════════════════════════
-  //  ANIMATION ENGINE
-  // ═══════════════════════════════════════════════════════════════
   const EASE      = 'cubic-bezier(.22,1,.36,1)';
   const TRANS_DUR = '0.68s';
 
@@ -537,7 +497,6 @@
 
   function resetView(viewEl) {
     viewEl.querySelectorAll('.r').forEach(setHidden);
-    // Close all bento cards whenever the likes view is reset
     viewEl.querySelectorAll('.bento-card').forEach(c => c.classList.remove('open'));
   }
 
@@ -548,7 +507,6 @@
     });
   }
 
-  // ── VIEW MANAGEMENT ─────────────────────────────────────────────
   const views = {};
   document.querySelectorAll('.view').forEach(v => {
     const id = v.id.replace('view-', '');
@@ -606,7 +564,6 @@
 
   navBtns.forEach(btn => btn.addEventListener('click', () => navigateTo(btn.dataset.view)));
 
-  // ── BOOT ────────────────────────────────────────────────────────
   setActiveBtn('home');
   showView('home');
 
